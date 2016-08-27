@@ -25,8 +25,8 @@ var Karaoke;
     mainFontSize = document.getElementById('main-fontSize');
     subFontSize = document.getElementById('sub-fontSize');
     
-    mainFontSize.addEventListener('change',function(e){ mainFont = 'bold ' + e.target.value +'px Angsana New' });
-    subFontSize.addEventListener('change',function(e){ subFont = 'bold ' + e.target.value +'px Angsana New' });
+    mainFontSize.addEventListener('change',function(e){ mainFont = 'bold ' + e.target.value +'px Angsana New'; refresh(); });
+    subFontSize.addEventListener('change',function(e){ subFont = 'bold ' + e.target.value +'px Angsana New'; refresh(); });
     
     document.getElementById('bgImage').addEventListener('change', handleFiles);
 

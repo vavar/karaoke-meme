@@ -9,12 +9,14 @@ var Karaoke;
   var img;
 
   var mainFont = 'bold 56px Angsana New';
-  var subFont = 'bold 28px Angsana New';
+  var subFont = 'bold 28px Arial';
   var mainText;
   var subText;
   var mainFontSize;
   var subFontSize;
   var w = 40;
+  var main = { 'x' : 10 , 'y' : 300, 'size': 56};
+  var sub = { 'x': 10, 'y':350, 'size':28};
   
   function init(){
 
@@ -25,8 +27,16 @@ var Karaoke;
     mainFontSize = document.getElementById('main-fontSize');
     subFontSize = document.getElementById('sub-fontSize');
     
-    mainFontSize.addEventListener('change',function(e){ mainFont = 'bold ' + e.target.value +'px Angsana New'; refresh(); });
-    subFontSize.addEventListener('change',function(e){ subFont = 'bold ' + e.target.value +'px Angsana New'; refresh(); });
+    mainFontSize.addEventListener('change',function(e){ main['size'] = e.target.value; mainFont = 'bold ' + e.target.value +'px Angsana New'; refresh(); });
+    subFontSize.addEventListener('change',function(e){ sub['size'] = e.target.value; subFont = 'bold ' + e.target.value +'px Arial'; refresh(); });
+    
+    document.getElementById('main-x').addEventListener('change',function(e){ main['x'] = e.target.value; refresh(); });
+    document.getElementById('main-y').addEventListener('change',function(e){ main['y'] = e.target.value; refresh();});
+    document.getElementById('main-w').addEventListener('change',function(e){ main['w'] = e.target.value; refresh();});
+    
+    document.getElementById('sub-x').addEventListener('change',function(e){ sub['x'] = e.target.value; refresh();});
+    document.getElementById('sub-y').addEventListener('change',function(e){ sub['y'] = e.target.value; refresh();});
+    document.getElementById('sub-w').addEventListener('change',function(e){ sub['w'] = e.target.value; refresh();});
     
     document.getElementById('bgImage').addEventListener('change', handleFiles);
 
@@ -85,22 +95,22 @@ var Karaoke;
     context.fillStyle = 'white';
     context.font = mainFont;
     context.textAlign = 'left';
-    context.strokeText(txtMain, x, y+30);
-    context.fillText(txtMain, x, y+30);
+    context.strokeText(txtMain, main['x'], main['y']);
+    context.fillText(txtMain, main['x'], main['y']);
     context.save();
     
     context.globalCompositeOperation = 'source-over';
 
     context.beginPath();
     // context.clearRect(x-10, y-50, 150, y);
-    context.rect(x-10, y-50, 240, y+30);
+    context.rect(main['x'], main['y'], main['w'], main['x'] + main['size'], main['y'] + main['size']);
     context.clip();
 
     context.strokeStyle = 'white';
-    context.strokeText(txtMain, x, y+30);
+    context.strokeText(txtMain, main['x'], main['y']);
 
     context.fillStyle = '#0231D3';
-    context.fillText(txtMain, x, y+30);
+    context.fillText(txtMain, main['x'], main['y']);
 
     context.restore();
 
@@ -111,20 +121,20 @@ var Karaoke;
     context.fillStyle = '#D07439';
     context.font = subFont;
     context.textAlign = 'left';
-        context.strokeText(txtSub, x, y+70);
-    context.fillText(txtSub, x, y+70);
+    context.strokeText(txtSub, sub['x'], sub['y']);
+    context.fillText(txtSub, sub['x'], sub['y']);
 
     context.save();
     
     context.beginPath();
-    context.rect(x-10, y+50, 270, y+100);
+    context.rect(sub['x'], sub['y'], sub['w'], sub['x'] + sub['size'], sub['y'] + sub['size']);
     context.clip();
 
     context.strokeStyle = 'white';
-    context.strokeText(txtSub, x, y+70);
+    context.strokeText(txtSub, sub['x'], sub['y']);
 
     context.fillStyle = '#0231D3';
-    context.fillText(txtSub, x, y+70);
+    context.fillText(txtSub, sub['x'], sub['y']);
 
     context.restore();
 

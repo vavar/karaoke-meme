@@ -7,7 +7,7 @@ var Karaoke;
   var txtMain = 'ยิ่งเธอส่งยิ้มคืนมา ยิ่งหวั่นไหว';
   var txtSub = 'YING-TER-SONG-YIM-KUEN-MA YING-WAN-WAI';
   var img;
-
+  var capImg;
   var mainFont = 'bold 56px Angsana New';
   var subFont = 'bold 28px Arial';
   var mainText;
@@ -23,6 +23,7 @@ var Karaoke;
     mainText = document.getElementById('mainText');
     subText = document.getElementById('subText');
     canvas = document.getElementById('draw-pad');
+    capImg = document.getElementById('capture-image');
     
     mainFontSize = document.getElementById('main-fontSize');
     subFontSize = document.getElementById('sub-fontSize');
@@ -70,6 +71,9 @@ var Karaoke;
     clearText();
     drawImage();
     drawText();
+    // save canvas image as data url (png format by default)
+    var dataURL = canvas.toDataURL();
+    capImg.src = dataURL;
   }
 
   function clearText() {
@@ -137,8 +141,6 @@ var Karaoke;
     context.fillText(txtSub, sub['x'], sub['y']);
 
     context.restore();
-    // save canvas image as data url (png format by default)
-    var dataURL = canvas.toDataURL();
   }
 
   obj.init = init;

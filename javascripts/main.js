@@ -103,7 +103,7 @@ var Karaoke;
 
     context.beginPath();
     // context.clearRect(x-10, y-50, 150, y);
-    context.rect(main['x'], main['y'], main['w'], main['x'] + main['size'], main['y'] + main['size']);
+    context.rect(main['x'] - main['size'], main['y'] - main['size'], main['w'], main['x'] + main['size'], main['y'] + main['size']);
     context.clip();
 
     context.strokeStyle = 'white';
@@ -127,7 +127,7 @@ var Karaoke;
     context.save();
     
     context.beginPath();
-    context.rect(sub['x'], sub['y'], sub['w'], sub['x'] + sub['size'], sub['y'] + sub['size']);
+    context.rect(sub['x'] -sub['size'], sub['y']-sub['size'], sub['w'], sub['x'] + sub['size'], sub['y'] + sub['size']);
     context.clip();
 
     context.strokeStyle = 'white';

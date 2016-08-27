@@ -27,10 +27,20 @@
             <span>Image : </span><span><input type="file" id="bgImage"></span>
           </div>
           <div>
-            <span>Main Text : </span><span><input type="text" id="mainText" onchange="Karaoke.onMainTextChange()"></span>
+            <label for="mainText">Main Text : </label>
+            <input type="text" id="mainText" onchange="Karaoke.onMainTextChange()">
           </div>
           <div>
-            <span>Sub Text : </span><span><input type="text" id="subText" onchange="Karaoke.onSubTextChange()"></span>
+            <label for="sub-fontSize">Main Font Size : </label>
+            <input type="number" id="main-fontSize" value="58">
+          </div>
+          <div>
+            <label for="subText">Sub Text : </label>
+            <input type="text" id="subText" onchange="Karaoke.onSubTextChange()">
+          </div>
+          <div>
+            <label for="sub-fontSize">Sub Font Size : </label>
+            <input type="number" id="sub-fontSize" value="26">
           </div>
         </section>
         <section>

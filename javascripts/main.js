@@ -12,6 +12,8 @@ var Karaoke;
   var subFont = 'bold 28px Angsana New';
   var mainText;
   var subText;
+  var mainFontSize;
+  var subFontSize;l
   var w = 40;
   
   function init(){
@@ -19,7 +21,13 @@ var Karaoke;
     mainText = document.getElementById('mainText');
     subText = document.getElementById('subText');
     canvas = document.getElementById('draw-pad');
-
+    
+    mainFontSize = document.getElementById('main-fontSize');
+    subFontSize = document.getElementById('sub-fontSize');
+    
+    mainFontSize.addEventListener('change',function(e){ mainFont = 'bold ' + e.target.value +'px Angsana New' });
+    subFontSize.addEventListener('change',function(e){ subFont = 'bold ' + e.target.value +'px Angsana New' });
+    
     document.getElementById('bgImage').addEventListener('change', handleFiles);
 
     context = canvas.getContext('2d');
@@ -62,8 +70,9 @@ var Karaoke;
     if (!img) {
       return;
     }
-    context.drawImage(img, 0, 0, img.width,    img.height,    // source rectangle
-                   0, 0, canvas.width, canvas.height ); // destination rectangle
+    canvas.width = img.width;
+    canvas.height = img.height;
+    context.drawImage(img, 0, 0 );
     context.save();
   }
 

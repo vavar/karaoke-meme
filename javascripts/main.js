@@ -15,8 +15,8 @@ var Karaoke;
   var mainFontSize;
   var subFontSize;
   var w = 40;
-  var main = { 'x' : 10 , 'y' : 300, 'size': 56};
-  var sub = { 'x': 10, 'y':350, 'size':28};
+  var main = { 'x' : 10 , 'y' : 300,'w':50, 'size': 56};
+  var sub = { 'x': 10, 'y':350, 'w':50,'size':28};
   
   function init(){
 
@@ -103,7 +103,7 @@ var Karaoke;
 
     context.beginPath();
     // context.clearRect(x-10, y-50, 150, y);
-    context.rect(main['x'] - main['size'], main['y'] - main['size'], main['w'], main['x'] + main['size'], main['y'] + main['size'] + main['size'] );
+    context.rect(main['x'] - main['size'], main['y'] - main['size'], main['w'], main['y'] + main['size'] + main['size'] );
     context.clip();
 
     context.strokeStyle = 'white';
@@ -127,7 +127,7 @@ var Karaoke;
     context.save();
     
     context.beginPath();
-    context.rect(sub['x'] -sub['size'], sub['y']-sub['size'], sub['w'], sub['x'] + sub['size'], sub['y'] + sub['size'] + sub['size']);
+    context.rect(sub['x'] -sub['size'], sub['y']-sub['size'], sub['w'], sub['y'] + sub['size'] + sub['size']);
     context.clip();
 
     context.strokeStyle = 'white';

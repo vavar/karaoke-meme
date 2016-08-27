@@ -137,7 +137,8 @@ var Karaoke;
     context.fillText(txtSub, sub['x'], sub['y']);
 
     context.restore();
-
+    // save canvas image as data url (png format by default)
+    var dataURL = canvas.toDataURL();
   }
 
   obj.init = init;

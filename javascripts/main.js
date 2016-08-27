@@ -13,7 +13,7 @@ var Karaoke;
   var mainText;
   var subText;
   var mainFontSize;
-  var subFontSize;l
+  var subFontSize;
   var w = 40;
   
   function init(){

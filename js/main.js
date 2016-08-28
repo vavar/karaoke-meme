@@ -15,8 +15,10 @@ var Karaoke;
   var mainFontSize;
   var subFontSize;
   var w = 40;
-  var main = { 'x' : 10 , 'y' : 300,'w':50, 'size': 56};
-  var sub = { 'x': 10, 'y':350, 'w':50,'size':28};
+  var main = { 'x' : 140 , 'y' : 600,'w':200, 'size': 56};
+  var sub = { 'x': 40, 'y':650, 'w':280,'size':28};
+  var imgType = 'rect';
+  var IMAGE_TYPE = { 'square':{ width: 720, height: 720},'rectH':{ width: 720, height: 480},'rectV':{ width: 480, height: 720}};
   
   function init(){
 
@@ -28,9 +30,19 @@ var Karaoke;
     mainFontSize = document.getElementById('main-fontSize');
     subFontSize = document.getElementById('sub-fontSize');
     
+    mainFontSize.value = main.size;
+    subFontSize.value = sub.size;
+
     mainFontSize.addEventListener('change',function(e){ main['size'] = e.target.value; mainFont = 'bold ' + e.target.value +'px Angsana New'; refresh(); });
     subFontSize.addEventListener('change',function(e){ sub['size'] = e.target.value; subFont = 'bold ' + e.target.value +'px Arial'; refresh(); });
     
+    document.getElementById('main-x').value = main.x;
+    document.getElementById('main-y').value = main.y;
+    document.getElementById('main-w').value = main.w;
+    document.getElementById('sub-x').value = sub.x;
+    document.getElementById('sub-y').value = sub.y;
+    document.getElementById('sub-w').value = sub.w;
+
     document.getElementById('main-x').addEventListener('change',function(e){ main['x'] = e.target.value; refresh(); });
     document.getElementById('main-y').addEventListener('change',function(e){ main['y'] = e.target.value; refresh();});
     document.getElementById('main-w').addEventListener('change',function(e){ main['w'] = e.target.value; refresh();});
@@ -47,11 +59,7 @@ var Karaoke;
     mainText.value = txtMain;
     subText.value = txtSub;
 
-    x = 30;
-    y = canvas.height - 100;
-    w = 10;
-
-    drawText();
+    refresh();
   }
 
   function handleFiles(e) {
@@ -84,9 +92,7 @@ var Karaoke;
     if (!img) {
       return;
     }
-    canvas.width = img.width;
-    canvas.height = img.height;
-    context.drawImage(img, 0, 0 );
+    context.drawImage(img, 0, 0 ,img.width,img.height,0,0,canvas.width,canvas.height);
     context.save();
   }
 
@@ -102,8 +108,6 @@ var Karaoke;
     context.strokeText(txtMain, main['x'], main['y']);
     context.fillText(txtMain, main['x'], main['y']);
     context.save();
-    
-    context.globalCompositeOperation = 'source-over';
 
     context.beginPath();
     // context.clearRect(x-10, y-50, 150, y);
@@ -155,7 +159,28 @@ var Karaoke;
     refresh();
   };
 
-  return obj;
+  obj.selectSquareImage = function(){
+    imgType = 'square';
+    canvas.width = IMAGE_TYPE[imgType].width;
+    canvas.height = IMAGE_TYPE[imgType].height;
+    refresh();
+  }
+
+  obj.selectHorizontalRectImage = function(){
+    imgType = 'rectH';
+    canvas.width = IMAGE_TYPE[imgType].width;
+    canvas.height = IMAGE_TYPE[imgType].height;
+    refresh();
+  }
+
+  obj.selectVerticalRectImage = function(){
+    imgType = 'rectV';
+    canvas.width = IMAGE_TYPE[imgType].width;
+    canvas.height = IMAGE_TYPE[imgType].height;
+    refresh();
+  }
+
+  obj.init();
 })(Karaoke || (Karaoke = {}));
 
 
